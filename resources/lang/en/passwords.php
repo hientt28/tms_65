@@ -18,5 +18,10 @@ return [
     'sent' => 'We have e-mailed your password reset link!',
     'token' => 'This password reset token is invalid.',
     'user' => "We can't find a user with that e-mail address.",
-
+    'send_password_reset_link' => 'Send Password Reset Link',
+    'reset' => 'Reset Password',
+    'click_to_reset_password' => 'Click here to reset your password:',
+    'reset_password' => 'Reset Password',
+    'confirm_password' => 'Confirm Password',
+    'forgot_password' => 'Forgot Your Password?',
 ];
