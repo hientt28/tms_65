@@ -153,7 +153,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         
