@@ -4,45 +4,72 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{trans('label.appname')}}</title>
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <title>{{ trans('label.appname') }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ trans('label.appname') }}
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">{{ trans('label.login') }}</a></li>
-                        <li><a href="{{ url('/register') }}">{{ trans('label.register') }}</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ trans('label.logout') }}</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <i class="fa fa-dropbox"></i>
+            <a href="{{ url('/') }}"> {{ trans('label.appname') }} </a>
         </div>
-    </nav>
+
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                @if (Auth::guest())
+                    <li>
+                        <a href="{{ url('/login') }}">
+                            <i class="fa fa-sign-in"></i>
+                            {{ trans('label.login') }}
+                        </a>
+                    </li>
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <img class="avatar" src="{{ Auth::user()->avatar }}"/>
+                            &nbsp;&nbsp;{{ Auth::user()->name }}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ url('/logout') }}">
+                                    <i class="fa fa-btn fa-sign-out fa-fw"></i>
+                                    {{ trans('label.logout') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/profile') }}">
+                                    <i class="fa fa-btn fa-user fa-fw"></i>
+                                    {{ trans('label.profile') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/profile') }}">
+                                    <i class="fa fa-btn fa-bolt fa-fw"></i>
+                                    {{ trans('label.language') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+            </ul>
+        </div>
+    </div>
+    @if (!Auth::guest())
+        @include('layouts.navbar')
+    @endif
+</nav>
+<script type="text/javascript" src="js/plugins.js"></script>
+<script type="text/javascript" src="js/all.js"></script>
+@if (!Auth::guest())
+    <div id="page-wrapper">
+        @yield('content')
+    </div>
+@else
     @yield('content')
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+@endif
 </body>
 </html>
