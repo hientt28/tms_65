@@ -1,4 +1,5 @@
 <?php
+
 return[
     'user' => [
         'role' => [
@@ -6,8 +7,14 @@ return[
             'supervisor' => 1,
         ],
     ],
+
     'base_repository' => [
         'filter' => [],
         'attributes' => null,
     ],
+
+    'pagination' => [
+        'per_page_subject' => 5,
+        'per_page_task' => 5,
+    ]
 ];

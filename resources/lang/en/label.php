@@ -9,7 +9,8 @@ return [
     'cancel' => 'Cancel',
     'remember' => 'Remember Me',
     'name' => 'Name',
-    'appname' => 'TMS System',
+    'task' => 'Task',
+    'description' => 'Description',
     'profile' => 'Profile',
     'language' => 'Languages',
     'login_title' => 'Log in to your account',
@@ -22,4 +23,5 @@ return [
     'chart' => 'Charts',
     'dashboard' => 'DashBoard',
     'welcome' => 'Welcome for visit TMS System Page',
+    'app_name' => 'TMS System',
 ];

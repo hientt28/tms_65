@@ -14,4 +14,9 @@ class Course extends Model
         'end_date',
         'image_url',
     ];
+
+    public function courseSubjects()
+    {
+        return $this->hasMany(CourseSubject::class);
+    }
 }

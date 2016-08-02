@@ -22,6 +22,15 @@ Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => 'web'], function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::resource('trainees', 'TraineeController');
+
+        Route::group(['namespace' => 'Admin'], function () {
+            Route::resource('subjects', 'SubjectController');
+
+            Route::post('subjects/delete_multi', [
+                'as' => 'subjects/delete_multi',
+                'uses' => 'SubjectController@deleteMulti'
+            ]);
+        });
     });
 
     Route::group(['prefix' => 'login'], function () {

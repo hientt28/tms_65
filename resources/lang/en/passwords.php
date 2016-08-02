@@ -24,4 +24,5 @@ return [
     'reset_password' => 'Reset Password',
     'confirm_password' => 'Confirm Password',
     'forgot_password' => 'Forgot Your Password?',
+    'change_password' => 'Change password',
 ];
