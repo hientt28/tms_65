@@ -19,6 +19,20 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::resource('trainees', 'TraineeController');
+Route::group(['middleware' => 'web'], function () {
+    Route::group(['prefix' => 'admin'], function () {
+        Route::resource('trainees', 'TraineeController');
+    });
+
+    Route::group(['prefix' => 'login'], function () {
+        Route::get('social/{network}', [
+            'as' => 'loginSocialNetwork',
+            'uses' => 'SocialNetworkController@callback',
+        ]);
+
+        Route::get('{accountSocial}/redirect', [
+            'as' => 'redirectSocialNetwork',
+            'uses' => 'SocialNetworkController@redirect',
+        ]);
+    });
 });
