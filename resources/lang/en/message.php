@@ -12,4 +12,5 @@ return[
     'alert_add_trainee' => 'You do not choose trainee.',
     'trainee_is_empty' => 'Do not have any trainee in this course',
     'delete_successfully' => 'Delete option successfully',
+    'file_error' => 'File Error',
 ];

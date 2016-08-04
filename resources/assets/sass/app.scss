@@ -1,2 +1,35 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+#profile_avatar {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 10px;
+    left: -25px;
+    border-radius: 50%;
+  }
+
+#show_avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.circle {
+    background-color: #EEEEEE;
+    color: #FFFFFF;
+    border-radius: 50px;
+    display: inline-block;
+    margin: 0 5px;
+    padding: 10px;
+ }
+#avatar {
+    margin-top: -1px;
+    a:hover, a:focus, a:visited, a:active {
+        background-color: #004D40 !important;
+    }
+    a:hover {
+        color: #FF7043;
+    }
+}
+
 

@@ -32,7 +32,7 @@ var appBuilder = function () {
                 if (_.isUndefined(callback)) {
                     setTimeout(function () {
                         animate.transition(config.animateName);
-                    },400);
+                    }, 400);
                 } else {
                     callback();
                 }

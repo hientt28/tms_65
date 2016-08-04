@@ -77,4 +77,15 @@ abstract class BaseRepository implements BaseRepositoryInterface
 
         return $data;
     }
+
+    public function find($id)
+    {
+        $data = $this->model->find($id);
+
+        if (!$data) {
+            throw new Exception(trans('message.find_error'));
+        }
+
+        return $data;
+    }
 }
