@@ -5,9 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="_token" content="{!! csrf_token() !!}"/>
-
     <title>@yield('title')</title>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
@@ -21,7 +19,15 @@
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
+            <div class="input-group custom-search-form input-search col-md-5 col-sm-5 col-lg-5">
+                <input type="text" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+            <ul class="nav navbar-nav navbar-right margin-top-3">
                 @if (Auth::guest())
                     <li>
                         <a href="{{ url('/login') }}">
@@ -30,33 +36,27 @@
                         </a>
                     </li>
                 @else
-                    <li class="dropdown">
+                    <div class="ui simple dropdown item dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <img class="avatar" src="{{ Auth::user()->avatar }}"/>
                             &nbsp;&nbsp;{{ Auth::user()->name }}
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ url('/logout') }}">
-                                    <i class="fa fa-btn fa-sign-out fa-fw"></i>
-                                    {{ trans('label.logout') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/profile') }}">
-                                    <i class="fa fa-btn fa-user fa-fw"></i>
-                                    {{ trans('label.profile') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/profile') }}">
-                                    <i class="fa fa-btn fa-bolt fa-fw"></i>
-                                    {{ trans('label.language') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                        <div class="menu">
+                            <a class="item" href="{{ url('/logout') }}">
+                                <i class="fa fa-btn fa-sign-out fa-fw"></i>
+                                {{ trans('label.logout') }}
+                            </a>
+                            <a class="item" href="{{ url('/profile') }}">
+                                <i class="fa fa-btn fa-user fa-fw"></i>
+                                {{ trans('label.profile') }}
+                            </a>
+                            <a class="item" href="{{ url('/profile') }}">
+                                <i class="fa fa-btn fa-bolt fa-fw"></i>
+                                {{ trans('label.language') }}
+                            </a>
+                        </div>
+                    </div>
                 @endif
             </ul>
         </div>
@@ -65,7 +65,11 @@
         @include('layouts.navbar')
     @endif
 </nav>
-
+<div id="_loader" class="loadingArea" style="display: none;">
+    <img src="{{ asset('images/loading.gif') }}" alt="Loading..."/>
+</div>
+<script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/all.js') }}"></script>
 @if (!Auth::guest())
     <div id="page-wrapper">
         @yield('content')
@@ -76,8 +80,5 @@
 
 <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/all.js') }}"></script>
-
-@yield('js')
-
 </body>
 </html>

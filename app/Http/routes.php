@@ -33,6 +33,18 @@ Route::group(['middleware' => 'web'], function () {
         });
     });
 
+    Route::resource('courses', 'CourseController');
+
+    Route::get('courses/search', [
+        'as' => 'search',
+        'uses' => 'CourseController@search'
+    ]);
+
+    Route::post('courses/destroySelected', [
+        'as' => 'destroySelected',
+        'uses' => 'CourseController@destroySelected'
+    ]);
+
     Route::group(['prefix' => 'login'], function () {
         Route::get('social/{network}', [
             'as' => 'loginSocialNetwork',

@@ -1,0 +1,1 @@
+@extends('suppervisor.course.create')

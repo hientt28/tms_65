@@ -31,4 +31,9 @@ class Subject extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class);
+    }
 }

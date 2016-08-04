@@ -1,16 +1,6 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav in" id="side-menu">
-            <li class="sidebar-search">
-                <div class="input-group custom-search-form">
-                    {{ Form::text('search', null, ['class'=>'form-control', 'placeholder'=>trans('label.search')]) }}
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </li>
             <li>
                 <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i>
                     {{ trans('label.dashboard') }}
@@ -24,7 +14,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('courses.index') }}">
                     <i class="fa fa-table fa-fw"></i>
                     {{ trans('label.course') }}
                 </a>
