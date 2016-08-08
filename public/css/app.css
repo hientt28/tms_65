@@ -8179,54 +8179,33 @@ button.close {
     }
 }
 
-body {
-    /*font-family: 'Lato';*/
-}
-
+/*Subject_Task*/
 .fa-btn {
     margin-right: 6px;
-}
-
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
 
 .form {
     margin-top: 5%;
 }
 
-.th {
+.data_list {
+    margin-top: 4%;
+}
+
+#tblData > thead > tr > th {
+    background-color: #1b6d85;
+    color: white;
+}
+
+#tblData > tbody > tr > td {
+    padding: 0;
+}
+
+.th_chk, .th_action, .td_action {
     text-align: center;
-    background-color: #bababa;
 }
 
 .chk {
     text-align: center;
     width: 5%;
-}
-
-.div_subject {
-    margin-top: 4%;
-}
-
-.td_subject_name {
-    width: 25%;
-}
-
-.td_subject_description {
-    width: 40%;
-}
-
-.td_subject_update {
-    width: 20%;
-}
-
-.td_subject_action {
-    width: 10%;
-}
-
-#tblSubject > tbody > tr > td {
-    padding: 0;
 }
