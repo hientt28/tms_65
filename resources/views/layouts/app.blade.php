@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ trans('label.appname') }}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
 </head>
 <body id="app-layout">
@@ -29,9 +29,8 @@
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <img class="avatar" src="{{ Auth::user()->avatar }}"/>
-                            &nbsp;&nbsp;{{ Auth::user()->name }}
-                            <span class="caret"></span>
+                            {!! Html::image(Auth::user()->avatar, null , ['id' => 'profile_avatar']) !!}
+                            {{ Auth::user()->name }}<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
@@ -41,7 +40,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/profile') }}">
+                                <a href="{{ route('admin.profile', ['id' => Auth::user()->id ]) }}">
                                     <i class="fa fa-btn fa-user fa-fw"></i>
                                     {{ trans('label.profile') }}
                                 </a>
@@ -62,8 +61,8 @@
         @include('layouts.navbar')
     @endif
 </nav>
-<script type="text/javascript" src="js/plugins.js"></script>
-<script type="text/javascript" src="js/all.js"></script>
+<script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/all.js') }}"></script>
 @if (!Auth::guest())
     <div id="page-wrapper">
         @yield('content')

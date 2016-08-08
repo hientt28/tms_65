@@ -10,4 +10,5 @@ interface BaseRepositoryInterface
     public function all($filters = []);
     public function updateById($inputs, $id);
     public function deleteById($ids);
+    public function find($id);
 }

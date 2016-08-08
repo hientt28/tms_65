@@ -22,4 +22,6 @@ return [
     'chart' => 'Charts',
     'dashboard' => 'DashBoard',
     'welcome' => 'Welcome for visit TMS System Page',
+    'task_information' => 'Task Information',
+    'finish' => 'Finish',
 ];

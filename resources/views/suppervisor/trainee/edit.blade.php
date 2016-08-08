@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row page-title-row">
             <div class="col-md-12">
-                <h3><small>&raquo; {{ trans('trainee.edit_trainee') }}</small></h3>
+                <h3>&raquo; {{ trans('trainee.edit_trainee') }} </h3>
             </div>
         </div>
     </div>
