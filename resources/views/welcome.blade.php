@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', trans('label.app_name'))
+
 @section('content')
 <div class="intro-header">
     <div class="container">

@@ -12,7 +12,7 @@
                 </div>
             </li>
             <li>
-                <a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i>
+                <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i>
                     {{ trans('label.dashboard') }}
                 </a>
             </li>
@@ -24,19 +24,19 @@
                 </a>
             </li>
             <li>
-                <a href="tables.html">
+                <a href="#">
                     <i class="fa fa-table fa-fw"></i>
                     {{ trans('label.course') }}
                 </a>
             </li>
             <li>
-                <a href="forms.html">
+                <a href="{{ route('admin.subjects.index') }}">
                     <i class="fa fa-book fa-fw"></i>
                     {{ trans('label.subject') }}
                 </a>
             </li>
             <li>
-                <a href="forms.html">
+                <a href="#">
                     <i class="fa fa-tasks fa-fw"></i>
                     {{ trans('label.task') }}
                 </a>

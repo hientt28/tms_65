@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', trans('label.app_name'))
+
 @section('content')
 
     <div id="_loader" class="loadingArea" style="display: none;">

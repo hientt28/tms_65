@@ -11,5 +11,9 @@ return[
     'edit_user_successfully' => 'Edit user successfully',
     'alert_add_trainee' => 'You do not choose trainee.',
     'trainee_is_empty' => 'Do not have any trainee in this course',
-    'delete_successfully' => 'Delete option successfully',
+    'delete_successfully' => 'Delete option successfully!',
+    'delete_success' => 'Delete successfully!',
+    'delete_multi_success' => 'Delete multi successfully!',
+    'create_success' => 'Create successfully!',
+    'update_success' => 'Update successfully!',
 ];

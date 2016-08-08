@@ -19,7 +19,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->model->paginate($limit);
     }
 
-    public function showByid($id = null)
+    public function showById($id = null)
     {
         $data = $this->model->find($id);
         if (!$data) {
@@ -33,7 +33,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $data = $this->model->create($input);
         if (!$data) {
-            throw new Exception (trans('message.create_error'));
+            throw new Exception(trans('message.create_error'));
         }
 
         return $data;
@@ -57,7 +57,6 @@ abstract class BaseRepository implements BaseRepositoryInterface
         if (!$data) {
             throw new Exception(trans('message.update_error'));
         }
-
         return $data;
     }
 

@@ -4,9 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ trans('label.appname') }}</title>
+    <meta name="_token" content="{!! csrf_token() !!}"/>
+
+    <title>@yield('title')</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
 </head>
 <body id="app-layout">
@@ -14,7 +17,7 @@
     <div class="container">
         <div class="navbar-header">
             <i class="fa fa-dropbox"></i>
-            <a href="{{ url('/') }}"> {{ trans('label.appname') }} </a>
+            <a href="{{ url('/') }}"> {{ trans('label.app_name') }} </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -62,8 +65,7 @@
         @include('layouts.navbar')
     @endif
 </nav>
-<script type="text/javascript" src="js/plugins.js"></script>
-<script type="text/javascript" src="js/all.js"></script>
+
 @if (!Auth::guest())
     <div id="page-wrapper">
         @yield('content')
@@ -71,5 +73,11 @@
 @else
     @yield('content')
 @endif
+
+<script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/all.js') }}"></script>
+
+@yield('js')
+
 </body>
 </html>
