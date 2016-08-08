@@ -169,7 +169,6 @@ var loginBuilder = (function (appBuilder) {
             this.bindEvent();
         }
     }
-
 }(appBuilder))
 
 var courseBuilder = (function () {
@@ -239,7 +238,7 @@ var courseBuilder = (function () {
                 }
                 if (!course.utils.isset(selected) && courses !== undefined) {
                     $.ajax({
-                        url: 'courses/destroySelected',
+                        url: 'destroySelected',
                         data: {
                             ids: courses
                         },
@@ -366,8 +365,6 @@ var courseBuilder = (function () {
                     }
                 }
             }());
-
-
         },
         saveSelect: function (id) {
             localStorage.setItem('selected', id);
@@ -489,3 +486,5 @@ $('#btn_del_task').click(function () {
         }
     }
 });
+
+//# sourceMappingURL=all.js.map

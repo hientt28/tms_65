@@ -31,4 +31,6 @@ return [
             'error' => 'Delete course error',
         ],
     ],
+    'file_error' => 'File Error',
+    'upload_error' => 'Upload Image Error',
 ];

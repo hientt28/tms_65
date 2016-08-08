@@ -19,7 +19,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->model->paginate($limit);
     }
 
-    public function showById($id = null)
+    public function showById($id)
     {
         $data = $this->model->find($id);
         if (!$data) {

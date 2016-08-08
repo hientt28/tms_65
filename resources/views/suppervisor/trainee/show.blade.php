@@ -5,8 +5,8 @@
         <section>
             <div class="row page-title-row">
                 <div class="col-md-6">
-                    <h3><small>&raquo; {{ trans('trainee.trainee_detailt') }} </small></h3>
-                    <a href="{{ route('admin.trainees.index') }}" class="btn btn-success"><i class="fa fa-chevron-circle-left"></i>{{ trans('trainee.back') }}</a>
+                    <h3>&raquo; {{ trans('trainee.trainee_detailt') }} </h3>
+                    {{ link_to_route('admin.trainees.index', trans('trainee.back'), null, ['class' => 'btn btn-success']) }}
                 </div>
             </div>
             <br/>
@@ -21,11 +21,11 @@
                             <div class="user-information">
                                 <div>
                                     <span class="information-label"><strong>{{ trans('trainee.name') }}</strong></span>
-                                    <span>{{ $user['name'] }}</span>
+                                    <span> {{ $user['name'] }} </span>
                                 </div>
                                 <div>
                                     <span class="information-label"><strong>{{ trans('trainee.email') }}</strong></span>
-                                    <span>{{ $user['email'] }}</span>
+                                    <span> {{ $user['email'] }} </span>
                                 </div>
                             </div>
                         </div>

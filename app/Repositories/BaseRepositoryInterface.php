@@ -6,7 +6,7 @@ interface BaseRepositoryInterface
 {
     public function paginate($limit);
 
-    public function showById($id = null);
+    public function showById($id);
 
     public function create($data);
 
@@ -17,4 +17,5 @@ interface BaseRepositoryInterface
     public function deleteById($ids);
 
     public function search($term);
+
 }

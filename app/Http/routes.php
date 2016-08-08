@@ -20,9 +20,11 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'web'], function () {
-    Route::group(['prefix' => 'admin'], function () {
+    Route::get('/' , ['as' =>'home', 'uses' => 'HomeController@index']);
+    Route::resource('admin', 'AdminController');
+    Route::resource('users', 'UserController');
+    Route::group([ 'prefix' => 'admin'], function () {
         Route::resource('trainees', 'TraineeController');
-
         Route::group(['namespace' => 'Admin'], function () {
             Route::resource('subjects', 'SubjectController');
 

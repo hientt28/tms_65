@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row page-title-row">
             <div class="col-md-12">
-                <h3><small>&raquo; {{ trans('trainee.edit_trainee') }}</small></h3>
+                <h3>&raquo; {{ trans('trainee.edit_trainee') }} </h3>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <div class="col-md-5 col-md-offset-6">
                                 {{ Form::button('<i class="fa fa-btn fa-user"></i> ' . trans("trainee.save"), ['type' => 'submit', 'class' => 'btn btn-primary']) }}
-                                <a href="{{ route('admin.trainees.index') }}" class="btn btn-success"><i class="fa fa-chevron-circle-left"></i>{{ trans('trainee.back') }}</a>
+                                {{ link_to_route('admin.trainees.index', trans('trainee.back'), null, ['class' => 'btn btn-success']) }}
                             </div>
                         </div>
                     {!! Form::close() !!}
