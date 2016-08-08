@@ -23,8 +23,8 @@ class TraineeController extends Controller
      */
     public function index()
     {
-        $rows = $this->userRepository->paginate(trans('trainee.limit'));
-        return view('suppervisor.trainee.index', compact('rows'));
+        $users = $this->userRepository->paginate(trans('trainee.limit'));
+        return view('suppervisor.trainee.index', compact('users'));
     }
 
     /**

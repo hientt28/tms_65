@@ -16,7 +16,6 @@ return [
     'delete_multi_success' => 'Delete multi successfully!',
     'create_success' => 'Create successfully!',
     'update_success' => 'Update successfully!',
-    'delete_successfully' => 'Delete option successfully',
     'course' => [
         'create' => [
             'success' => 'Create course successfully',
@@ -31,4 +30,6 @@ return [
             'error' => 'Delete course error',
         ],
     ],
+    'file_error' => 'File Error',
+    'upload_error' => 'Upload Image Error',
 ];

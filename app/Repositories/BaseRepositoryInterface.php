@@ -17,4 +17,7 @@ interface BaseRepositoryInterface
     public function deleteById($ids);
 
     public function search($term);
+
+    public function find($id);
+
 }

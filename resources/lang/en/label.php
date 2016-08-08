@@ -40,4 +40,7 @@ return [
     'cancel' => 'Cancel',
     'back' => 'Back',
     'ok' => 'Ok',
+    'task_information' => 'Task Information',
+    'finish' => 'Finish',
+
 ];

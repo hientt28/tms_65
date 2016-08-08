@@ -6,6 +6,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    const ROLE_ADMIN = 1;
+    const ROLE_USER = 0;
     /**
      * The attributes that are mass assignable.
      *
@@ -41,5 +43,10 @@ class User extends Authenticatable
     public function socialNetworks()
     {
         return $this->hasMany(SocialNetwork::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role;
     }
 }

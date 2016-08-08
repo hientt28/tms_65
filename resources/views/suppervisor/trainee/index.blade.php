@@ -5,12 +5,13 @@
         <section>
             <div class="row page-title-row">
                 <div class="col-md-6">
-                    <h3><small>&raquo; {{ trans('trainee.manager_trainee') }} </small></h3>
+                    <h3>&raquo; {{ trans('trainee.manager_trainee') }} </h3>
                 </div>
                 <div class="col-md-6 text-right">
-                    <a href="{{ route('admin.trainees.create') }}" class="btn btn-success"> {{ trans('trainee.new_trainee') }} </a>
+                    {{ link_to_route('admin.trainees.create', trans('trainee.new_trainee'), null, ['class' => 'btn btn-success']) }}
                 </div>
             </div>
+            <br/>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
@@ -33,19 +34,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($rows as $key => $row)
+                                    @foreach ($users as $user)
                                         <tr>
-                                            <td><input type="checkbox" class="checkthis" name="checkbox[]" value="{{ $row->id }}"/></td>
-                                            <td> {{ $row->id }} </td>
-                                            <td> {{ $row->name }} </td>
-                                            <td> {{ $row->email }} </td>
+                                            <td><input type="checkbox" class="checkthis" name="checkbox[]" value="{{ $user->id }}"/></td>
+                                            <td>{{ link_to_route('admin.profile', $user['id'], [ $user->id ]) }}</td>
+                                            <td> {{ $user->name }} </td>
+                                            <td> {{ $user->email }} </td>
                                             <td>
-                                                <a class="btn btn-success" href="{{ route('admin.trainees.edit', [ $row->id ]) }}" title="{{ trans('trainee.edit') }}">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
+                                                {{ link_to_route('admin.trainees.edit', trans('trainee.edit'), [ $user->id ], ['class' => 'btn btn-success']) }}
                                             </td>
                                             <td>
-                                                {!! Form::open(['route' => ['admin.trainees.destroy', $row->id], 'method' => 'DELETE']) !!}
+                                                {!! Form::open(['route' => ['admin.trainees.destroy', $user->id], 'method' => 'DELETE']) !!}
                                                     {{ Form::button("<i class=\"fa fa-trash-o\"></i> ", [
                                                         'class' => 'btn btn-danger',
                                                         'onclick' => "return confirm('" . trans('trainee.confirm_delete') . "')",
@@ -54,9 +53,7 @@
                                                 {!! Form::close() !!}
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.trainees.show', [ $row->id ]) }}" title="detail">
-                                                    <i class="glyphicon glyphicon-arrow-right"></i>
-                                                </a>
+                                                {{ link_to_route('admin.trainees.show', trans('trainee.detail'), [ $user->id ], ['class' => 'btn btn-success']) }}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -64,7 +61,7 @@
                             </table>
                         </div>
                         <div class="pagination pull-right">
-                            {!! $rows->links() !!}
+                            {!! $users->links() !!}
                         </div>
                     </div>
                 </div>

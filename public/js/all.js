@@ -169,7 +169,6 @@ var loginBuilder = (function (appBuilder) {
             this.bindEvent();
         }
     }
-
 }(appBuilder))
 
 var courseBuilder = (function () {
@@ -239,7 +238,7 @@ var courseBuilder = (function () {
                 }
                 if (!course.utils.isset(selected) && courses !== undefined) {
                     $.ajax({
-                        url: 'courses/destroySelected',
+                        url: 'destroySelected',
                         data: {
                             ids: courses
                         },
@@ -366,8 +365,6 @@ var courseBuilder = (function () {
                     }
                 }
             }());
-
-
         },
         saveSelect: function (id) {
             localStorage.setItem('selected', id);
@@ -419,73 +416,4 @@ $(document).ready(function () {
     courseBuilder.build();
 })
 
-// select multi
-$("#data_grid").on('click', '#checkAll', function () {
-    $('.case').prop('checked', this.checked);
-});
-
-$(".case").click(function () {
-    if ($(".case").length == $(".case:checked").length) {
-        $("#checkAll").prop("checked", "checked");
-    } else {
-        $("#checkAll").removeAttr("checked");
-    }
-});
-
-//  Delete multi subject
-$('#btn_del_subject').click(function () {
-    var ids = [];
-    $('.case:checked').each(function () {
-        ids.push($(this).val());
-    });
-
-    if (ids.length === 0) { //tell you if the array is empty
-        alert("No subjects were selected?");
-    } else {
-        if (!confirm("Are you sure you want to delete this?")) {
-            return false;
-        } else {
-            $.ajax({
-                url: 'subjects/delete_multi',
-                type: 'POST',
-                data: {id: ids},
-                dateType: 'json',
-                success: function (response) {
-                    $('#data_grid').html(response['view']);
-                    alert("Delete multi subjects success!");
-                }
-            });
-
-            return true;
-        }
-    }
-});
-
-// Dellete multi tasks
-$('#btn_del_task').click(function () {
-    var ids = [];
-    $('.case:checked').each(function () {
-        ids.push($(this).val());
-    });
-
-    if (ids.length === 0) { //tell you if the array is empty
-        alert("No subjects were selected?");
-    } else {
-        if (!confirm("Are you sure you want to delete this?")) {
-            return false;
-        } else {
-            $.ajax({
-                url: 'tasks/delete_multi',
-                type: 'POST',
-                data: {id: ids},
-                dateType: 'json',
-                success: function (response) {
-                    $('#data_grid').html(response['view']);
-                    alert("Delete multi subjects success!");
-                }
-            });
-
-            return true;
-        }
-    }
-});
+//# sourceMappingURL=all.js.map
