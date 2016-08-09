@@ -17,6 +17,7 @@ return [
         'search' => 'Search ...',
         'name' => 'Enter name',
         'description' => 'Enter description',
+        'select_subject' => '<-- Please select a Subject -->'
     ],
     
     'footer' => 'Footer text',

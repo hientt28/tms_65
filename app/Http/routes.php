@@ -30,6 +30,13 @@ Route::group(['middleware' => 'web'], function () {
                 'as' => 'subjects/delete_multi',
                 'uses' => 'SubjectController@deleteMulti'
             ]);
+
+            Route::resource('tasks', 'TaskController');
+
+            Route::post('tasks/delete_multi', [
+                'as' => 'tasks/delete_multi',
+                'uses' => 'TaskController@deleteMulti'
+            ]);
         });
     });
 

@@ -49,7 +49,7 @@
                             </thead>
 
                             <tbody>
-                            @if(count($listSubjects) > 0)
+                            @if(count($listTasks) > 0)
                                 @foreach($listTasks as $task)
                                     <tr>
                                         <td>{{ $task['name'] }}</td>
@@ -62,9 +62,7 @@
                     </div>
 
                     <div class="pull-right">
-                        <a href="{{ route('admin.subjects.index') }}" class="btn btn-default">
-                            {{ trans('common.button.ok') }}
-                        </a>
+                        {!! link_to_route('admin.subjects.index', trans('common.button.ok'), '', ['class' => 'btn btn-default']) !!}
                     </div>
                 </div>
                 {!! Form::close() !!}

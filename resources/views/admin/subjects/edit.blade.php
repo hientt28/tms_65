@@ -16,7 +16,6 @@
                         {!! Form::label('name', trans('label.name'), ['class' => 'col-md-2']) !!}
                         <div class="col-sm-10">
                             {!! Form::text('name', $subjects['name'], [
-                                'id' => 'name',
                                 'class' => 'form-control',
                                 'placeholder' => trans('common.placeholder.name')
                             ]) !!}
@@ -30,7 +29,6 @@
                         {!! Form::label('description', trans('label.description'), ['class' => 'col-md-2']) !!}
                         <div class="col-sm-10">
                             {!! Form::textarea('description', $subjects['description'], [
-                                'id' => 'description',
                                 'class' => 'form-control',
                                 'rows' => '2',
                                 'placeholder' => trans('common.placeholder.description')
@@ -39,10 +37,9 @@
                     </div>
 
                     <div class="pull-right">
-                        <a href="{{ route('admin.subjects.index') }}" class="btn btn-default">
-                            {{ trans('common.button.cancel') }}
-                        </a>
-                        <button type="submit" class="btn btn-primary">{{ trans('common.button.save') }}</button>
+                        {!! link_to_route('admin.subjects.index', trans('common.button.cancel'), '', ['class' => 'btn btn-default']) !!}
+
+                        {!! Form::button(trans('common.button.save'), ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
                     </div>
                 </div>
                 {!! Form::close() !!}

@@ -20,16 +20,16 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.subjects.index') }}">
-                    <i class="fa fa-book fa-fw"></i>
-                    {{ trans('label.subject') }}
-                </a>
+                {!! Html::decode(link_to_route(
+                    'admin.subjects.index',
+                    '<i class="fa fa-book fa-fw"></i> ' . trans('label.subject')
+                )) !!}
             </li>
             <li>
-                <a href="#">
-                    <i class="fa fa-tasks fa-fw"></i>
-                    {{ trans('label.task') }}
-                </a>
+                {!! Html::decode(link_to_route(
+                    'admin.tasks.index',
+                    '<i class="fa fa-tasks fa-fw"></i> ' . trans('label.task')
+                )) !!}
             </li>
         </ul>
     </div>
