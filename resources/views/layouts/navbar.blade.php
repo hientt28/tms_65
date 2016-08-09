@@ -31,6 +31,13 @@
                     '<i class="fa fa-tasks fa-fw"></i> ' . trans('label.task')
                 )) !!}
             </li>
+            <li>
+                {!! Html::decode(link_to_route(
+                    'users.tasks.index',
+                    '<i class="fa fa-tasks fa-fw"></i> ' . trans('label.task'),
+                    [Auth::user()->id]
+                )) !!}
+            </li>
         </ul>
     </div>
 </div>

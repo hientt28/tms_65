@@ -42,4 +42,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(SocialNetwork::class);
     }
+
+    public function userSubjects()
+    {
+        return $this->hasManyThrough(UserSubject::class, UserCourse::class);
+    }
+    
+    public function userTasks()
+    {
+        return $this->hasManyThrough(UserTask::class, UserCourse::class);
+    }
 }

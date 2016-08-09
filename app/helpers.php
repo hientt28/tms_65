@@ -34,13 +34,13 @@ if (!function_exists('show_entry')) {
         $entry_default = empty($entry_default) ? 5 : $entry_default;
         return
             '<div class="paginate f-left">' .
-                '<span class="paginate-entry">
+            '<span class="paginate-entry">
                     Total ' . Form::select('size', ['5' => 5, '10' => 10, '15' => 15], $entry_default,
-                    ["class" => "dropdown-entry"]) . ' in ' . $records->total() . ' records
+                ["class" => "dropdown-entry"]) . ' in ' . $records->total() . ' records
                 </span>
             </div>' .
             '<div class="paginate f-right">'
-                . $records->links() .
+            . $records->links() .
             '</div >';
     }
 }

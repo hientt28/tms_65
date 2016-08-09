@@ -481,7 +481,7 @@ $('#btn_del_task').click(function () {
                 dateType: 'json',
                 success: function (response) {
                     $('#data_grid').html(response['view']);
-                    alert("Delete multi subjects success!");
+                    alert("Delete multi tasks success!");
                 }
             });
 
