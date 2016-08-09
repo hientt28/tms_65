@@ -4,10 +4,6 @@
 
 @section('content')
 
-    <div id="_loader" class="loadingArea" style="display: none;">
-        <img src="{{ asset('images/loading.gif') }}" alt="Loading..."/>
-    </div>
-
     <div class="login-container ui middle aligned center aligned grid">
         <div class="column">
             <h2 class="ui teal image header">

@@ -76,4 +76,8 @@ abstract class BaseRepository implements BaseRepositoryInterface
 
         return $data;
     }
+
+    public function search($term)
+    {
+    }
 }

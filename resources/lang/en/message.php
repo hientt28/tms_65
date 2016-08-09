@@ -1,6 +1,6 @@
 <?php
 
-return[
+return [
     'success' => 'Success',
     'create_error' => 'Create Error',
     'item_not_exist' => 'Data is not exist',
@@ -16,4 +16,19 @@ return[
     'delete_multi_success' => 'Delete multi successfully!',
     'create_success' => 'Create successfully!',
     'update_success' => 'Update successfully!',
+    'delete_successfully' => 'Delete option successfully',
+    'course' => [
+        'create' => [
+            'success' => 'Create course successfully',
+            'error' => 'Create course error',
+        ],
+        'update' => [
+            'success' => 'Update course successfully',
+            'error' => 'Update course error',
+        ],
+        'delete' => [
+            'success' => 'Delete course successfully',
+            'error' => 'Delete course error',
+        ],
+    ],
 ];

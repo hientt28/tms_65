@@ -63,14 +63,11 @@ var appBuilder = function () {
         /*common method send request with ajax*/
         this.sendData = function (config) {
             var request = $.ajax({
-                url: config.url ? config.url : '/login',
-                data: processData(config.data ? config.data : null),
+                url: config.url ? config.url : '',
+                data: config.data ? config.data : null,
                 dataType: config.dataType ? config.dataType : 'json',
-                method: config.method ? config.method : 'POST',
-                complete: function (res) {
-                    setTimeout(function () {
-                        loading('hide');
-                    }, (config.delay || 1000));
+                type: config.method ? config.method : 'POST',
+                beforeSend: config.beforeSend ? config.beforeSend : function () {
                 }
             });
 
@@ -91,6 +88,35 @@ var appBuilder = function () {
             }
         };
 
+        this.isset = function (val) {
+            return !_.isUndefined(val) && !_.isNull(val);
+        };
+
+        this.redirect = function (url) {
+            if (_.isNull(url) || _.isUndefined(url))
+                return;
+            window.open(url, '_blank');
+        };
+
+        this.validate = function (config) {
+            var validateRules = {};
+            for (var c in config.rules) {
+                validateRules[config.rules[c].id] = {
+                    identifier: config.rules[c].id,
+                    rules: [
+                        {
+                            type: config.rules[c].type ? config.rules[c].type : 'empty',
+                            prompt: config.rules[c].text ? config.rules[c].text : 'Please enter field information',
+                        }
+                    ],
+                }
+            }
+
+            config.form.form(validateRules, {
+                inline: true,
+                on: 'blur'
+            });
+        }
     };
 
     this.bindEvent = function (callback) {
@@ -146,16 +172,252 @@ var loginBuilder = (function (appBuilder) {
 
 }(appBuilder))
 
+var courseBuilder = (function () {
+    var course = new appBuilder();
+
+    return {
+        tooltip: function () {
+            var configs = [
+                {
+                    element: $('.add-course'),
+                    position: 'top center',
+                    content: 'Add New Course'
+                },
+                {
+                    element: $('.del-course-multi'),
+                    position: 'top center',
+                    content: 'Delete Course Selected'
+                },
+                {
+                    element: $('.btn-excel'),
+                    position: 'top center',
+                    content: 'Export Excel'
+                },
+                {
+                    element: $('.btn-csv'),
+                    position: 'top center',
+                    content: 'Export CSV'
+                },
+            ];
+            course.tooltip(configs);
+        },
+        animate: function () {
+            course.animate([{
+                animate: $('.body-content'),
+                animateName: 'shake'
+            }]);
+        },
+        bindEvent: function () {
+            $('form[id="delRoute"]').submit(function (e) {
+                e.preventDefault();
+            });
+            var input_all = $('input[name="select-all"]');
+            input_all.change(function () {
+                var check = input_all.prop('checked');
+                var all_input = $('input[type="checkbox"]');
+                if (check) {
+                    all_input.prop('checked', true);
+                } else {
+                    all_input.prop('checked', false);
+                }
+            });
+
+            $('.btn-confirm').click(function () {
+                var selected = localStorage.getItem('selected');
+                var courses = localStorage.getItem('courseList');
+                courses = JSON.parse(courses);
+                var input = $('input[name="select-all"]');
+                var checkboxs = $('input[type="checkbox"]');
+                if (input.prop('checked') && checkboxs.length > 1) {
+                    var courses = [];
+                    for (var i = 0; i < checkboxs.length; i++) {
+                        var element = $(checkboxs[i]);
+                        if (element.attr('name') !== 'select-all') {
+                            courses.push(element.val());
+                        }
+                    }
+                }
+                if (!course.utils.isset(selected) && courses !== undefined) {
+                    $.ajax({
+                        url: 'courses/destroySelected',
+                        data: {
+                            ids: courses
+                        },
+                        type: 'POST',
+                        beforeSend: function () {
+                            $('#confirmModal').modal('hide');
+                            course.utils.loading('show');
+                        }
+                    }).done(function (res) {
+                        setTimeout(function () {
+                            for (var c in courses) {
+                                $('tr.row-' + parseInt(courses[c])).addClass('hide');
+                            }
+                            localStorage.clear();
+                            course.utils.loading('hide');
+                            $('.result-msg').show(1000);
+                            $('.result-msg-content').text('Delete Courses Success!');
+                            setTimeout(function () {
+                                $('.result-msg').hide(1000);
+                            }, 2000);
+                        }, 400)
+                    });
+                } else {
+                    var formName = 'delRoute' + selected;
+                    var _form = $('form[name="' + formName + '"]');
+                    _form.unbind('submit');
+                    _form.submit();
+                }
+            });
+
+            $('.del-course').click(function () {
+                $('#confirmModal').modal('show');
+            });
+
+            $('.prompt').change(function () {
+                course.utils.loading('show');
+                $('input[name="term"]').val($('.prompt').val());
+                setTimeout(function () {
+                    $('form[name="search"]').submit();
+                }, 500);
+            });
+
+            $('#confirmModal').on('hidden.bs.modal', function () {
+                $('.modal-body').text('Are you sure?');
+                localStorage.removeItem('selected');
+                $('.btn-confirm').prop('disabled', false);
+            });
+
+            $('.del-course-multi').click(function () {
+                var courses = localStorage.getItem('courseList');
+                var checkall = $('input[name="select-all"]').prop('checked');
+                if ((_.isUndefined(courses) || _.isNull(courses)) && !checkall) {
+                    $('.modal-body').text('Please select courses before delete!');
+                    $('.btn-confirm').prop('disabled', true);
+                    $('#confirmModal').modal('show');
+                    return;
+                } else {
+                    $('#confirmModal').modal('show');
+                }
+            });
+
+            $('.dropdown-entry').change(function () {
+                course.utils.loading('show');
+                $('input[name="entry"]').val($('.dropdown-entry').val());
+                $('form[name="show-entry"]').submit();
+            });
+
+            $('input[name="elementAll"]').click(function () {
+                var check = $('input[name="elementAll"]').prop('checked');
+                var input = $('input[type="checkbox"]');
+                var data = [];
+                for (var i = 0; i < input.length; i++) {
+                    if (input[i].hasAttribute('element')) {
+                        data.push($(input[i]).val());
+                    }
+                }
+                if (check) {
+                    $(input).prop('checked', true);
+                    $('input[name="subjectData"]').val(data);
+                } else {
+                    $(input).prop('checked', false);
+                    $('input[name="subjectData"]').val('');
+                }
+            })
+
+            $('form[name="CI"]').submit(function (e) {
+                e.preventDefault();
+            })
+
+            $('.btn-ci').click(function () {
+                $('form[name="CI"]').unbind('submit');
+                course.utils.validate({
+                    form: $('form[name="CI"]'), rules: [
+                        {
+                            id: 'name',
+                            text: 'Please enter course name'
+                        },
+                        {
+                            id: 'description',
+                            text: 'Please enter course description'
+                        }
+                    ]
+                });
+                var input = $('input[type="checkbox"]');
+                var data = [];
+                for (var i = 0; i < input.length; i++) {
+                    var isCheck = $(input[i]).prop('checked');
+                    if (isCheck && input[i].hasAttribute('element')) {
+                        data.push($(input[i]).val());
+                    }
+                }
+                $('input[name="subjectData"]').val(data);
+                $('form[name="CI"]').submit();
+            });
+
+            (function () {
+                var input = $('input[type="checkbox"]');
+                for (var i = 0; i < input.length; i++) {
+                    if (input[i].hasAttribute('element')) {
+                        var _input = $(input[i]);
+                        if (_input.attr('belongCourse') == "true") {
+                            _input.prop('checked', true);
+                        } else continue;
+                    }
+                }
+            }());
+
+
+        },
+        saveSelect: function (id) {
+            localStorage.setItem('selected', id);
+        },
+        saveStorage: function (id) {
+            var checked = $('input[name="radio-' + id + '"]').prop('checked');
+            var list = localStorage.getItem('courseList');
+            list = _.isUndefined(list) || _.isNull(list) ? null : JSON.parse(list);
+            if (_.isArray(list) && !_.isEmpty(list)) {
+                var find = _.find(list, function (element) {
+                    return id === element;
+                });
+                if (find === undefined) {
+                    if (checked) {
+                        list.push(id);
+                    }
+                    localStorage.setItem('courseList', JSON.stringify(list));
+                } else {
+                    if (!checked) {
+                        var index = _.indexOf(list, "" + id);
+                        list.splice(index, 1);
+                        localStorage.setItem('courseList', JSON.stringify(list));
+                    }
+                }
+            } else {
+                if (checked) {
+                    localStorage.setItem('courseList', JSON.stringify([id]));
+                }
+            }
+        },
+        utils: function () {
+            return course.utils;
+        },
+        build: function () {
+            localStorage.clear();
+            this.tooltip();
+            this.animate();
+            this.bindEvent();
+        }
+    }
+
+}(appBuilder))
+
 $(document).ready(function () {
+    $.ajaxSetup({
+        headers: {'X-CSRF-Token': $('meta[name=_token]').attr('content')}
+    });
     loginBuilder.build();
+    courseBuilder.build();
 })
-
-//# sourceMappingURL=all.js.map
-
-// add CSRF /////////////////////////////////////
-$.ajaxSetup({
-    headers: {'X-CSRF-Token': $('meta[name=_token]').attr('content')}
-});
 
 // select multi
 $("#data_grid").on('click', '#checkAll', function () {

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'id' => 'Id',
     'email_address' => 'E-Mail Address',
     'password' => 'Password',
     'login' => 'Login',
@@ -24,4 +25,19 @@ return [
     'dashboard' => 'DashBoard',
     'welcome' => 'Welcome for visit TMS System Page',
     'app_name' => 'TMS System',
+    'start_date' => 'Start Date',
+    'end_date' => 'End Date',
+    'status' => 'Status',
+    'create' => 'Create',
+    'update' => 'Update',
+    'action' => 'Action',
+    'data_empty' => 'Data Empty',
+    'notification' => 'Notifcation',
+    'all' => 'All',
+    'created' => 'Created',
+    'in_progress' => 'In Progress',
+    'pending' => 'Pending',
+    'cancel' => 'Cancel',
+    'back' => 'Back',
+    'ok' => 'Ok',
 ];
