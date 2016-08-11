@@ -20,6 +20,8 @@ return [
         2 => 'In Progress',
         3 => 'Cancel',
         4 => 'Pending',
+        'pending' => 1,
+        'finish' => 2
     ],
     'paginate_document_per_page' => 5,
 ];

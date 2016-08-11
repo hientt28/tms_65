@@ -11,6 +11,8 @@ return [
         'search' => 'Search',
         'list_task' => 'Tasks',
         'ok' => 'OK',
+        'finish' => 'Finish',
+        'report' => 'Report',
     ],
     
     'placeholder' => [
@@ -37,8 +39,10 @@ return [
         'name' => 'Name',
         'task' => 'Task',
         'subject' => 'Subject',
+        'course' => 'Course',
         'description' => 'Description',
-        'update' => 'Updated At',
+        'update' => 'Updated',
+        'status' => 'Status',
         'action' => 'Action',
     ],
     
@@ -48,5 +52,10 @@ return [
     
     'confirm' => [
         'delete' => 'Are you sure you want to delete this?'
+    ],
+
+    'status' => [
+        'created' => 'Pending',
+        'finish' => 'Complete',
     ]
 ];

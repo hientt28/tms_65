@@ -40,6 +40,15 @@ Route::group(['middleware' => 'web'], function () {
         });
     });
 
+    Route::group(['namespace' => 'User'], function () {
+        Route::resource('users.tasks', 'TaskController');
+
+        Route::get('users/{id}/report', [
+            'as' => 'report',
+            'uses' => 'TaskController@showReport'
+        ]);
+    });
+
     Route::resource('courses', 'CourseController');
 
     Route::get('courses/search', [
