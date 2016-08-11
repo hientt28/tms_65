@@ -41,26 +41,21 @@ class AdminController extends Controller
     {
         try {
             $user = $this->userRepository->find($id);
-        } catch (Exception $ex) {
-            return redirect()->route('admin.profile')->withError($ex->getMessage());
-        }
-
-        if ($request->hasFile('avatar')) {
-            $filename = $request->avatar;
-            try {
+            if ($request->hasFile('avatar')) {
+                $filename = $request->avatar;
                 Cloudder::upload($filename, config('common.path_cloud_avatar')."$user->name");
                 $user->avatar = Cloudder::getResult()['url'];
-            } catch (Exception $ex) {
-                return redirect()->route('users.edit')->withError(trans('message.upload_error'));
             }
+
+            $user->name = $request->get('name', '');
+            $user->address = $request->get('address', '');
+            $user->phone = $request->get('phone', '');
+            $user->email = $request->get('email', '');
+
+            $user->save();
+        } catch (Exception $ex) {
+            return redirect()->route('users.edit')->withError($ex->getMessage());
         }
-
-        $user->name = $request->get('name', '');
-        $user->address = $request->get('address', '');
-        $user->phone = $request->get('phone', '');
-        $user->email = $request->get('email', '');
-
-        $user->save();
 
         return redirect('home');
     }

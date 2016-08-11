@@ -32,4 +32,5 @@ return [
     ],
     'file_error' => 'File Error',
     'upload_error' => 'Upload Image Error',
+    'send_error' => 'Send Mail Error',
 ];

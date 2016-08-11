@@ -34,6 +34,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                if(count($user) {
                                     @foreach ($users as $user)
                                         <tr>
                                             <td><input type="checkbox" class="checkthis" name="checkbox[]" value="{{ $user->id }}"/></td>
@@ -57,6 +58,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                }
                                 </tbody>
                             </table>
                         </div>

@@ -1,5 +1,5 @@
 <div id="registerModal" class="modal fade" role="dialog">
-    {{ Form::open(['url' => '/register', 'method' => 'POST', 'class' => 'form-horizontal', 'role' => 'form']) }}
+    {{ Form::open(['url' => '/register', 'id' => 'register', 'method' => 'POST', 'class' => 'form-horizontal', 'role' => 'form']) }}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header panel-heading">
